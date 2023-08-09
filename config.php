@@ -5,5 +5,6 @@
     $whatsapp = "(81) 9 9999-9999";
     $whatsapp_link = "5581999999999";
     $nome_loja = "Boutique Freitas";
-    $texto_destaque = "Frete grátis para compras acimas de R$300,00"
+    $texto_destaque = "Frete grátis para compras acimas de R$300,00";
+    $endereco_loja = "Rua A, Nº 50, Centro, Goiana - PE";
 ?>
