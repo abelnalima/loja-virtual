@@ -3466,3 +3466,11 @@ ol {
 		font-size: 24px;
 	}
 }
+
+.img-center {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+}
