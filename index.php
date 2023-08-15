@@ -124,8 +124,8 @@
                             </ul>
                         </div>
                         <div class="featured__item__text">
-                            <a href="#">
-                                <h6>Crab Pool Security</h6>
+                            <a href="produto.php">
+                                <h6>Camisa Social</h6>
                                 <h5>$30.00</h5>
                             </a>
                         </div>

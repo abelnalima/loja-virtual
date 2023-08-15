@@ -32,7 +32,7 @@
                         <h6>Ainda não possui cadastro?</h6>
                         <p>Insira seu email para se cadastrar em nosso site!</p>
                         <form action="#">
-                            <input type="email" placeholder="Enter your mail" required>
+                            <input type="email" placeholder="Digite seu email" required>
                             <button type="submit" class="site-btn">Cadastre-se</button>
                         </form>
                         <div class="footer__widget__social">
