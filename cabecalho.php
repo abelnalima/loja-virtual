@@ -63,14 +63,13 @@
                 <li><a href="./categorias.php">Categorias</a></li>
                 <li><a href="#">Produtos</a>
                     <ul class="header__menu__dropdown">
-                        <li><a href="./produtos.php">Lista de Produtos</a></li>
-                        <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                        <li><a href="./checkout.html">Check Out</a></li>
-                        <li><a href="./blog-details.html">Blog Details</a></li>
+                        <li><a href="./produtos.php">Produtos</a></li>
+                        <li><a href="./lista-produtos.php">Lista de Produtos</a></li>
+                        <li><a href="./promocoes.php">Promoções</a></li>
+                        <li><a href="./combos.php">Combos</a></li>
                     </ul>
                 </li>
                 <li><a href="./blog.html">Blog</a></li>
-                <li><a href="./carrinho.php">Carrinho</a></li>
                 <li><a href="./contatos.php">Contatos</a></li>
             </ul>
         </nav>
