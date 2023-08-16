@@ -69,7 +69,7 @@
                         <li><a href="./combos.php">Combos</a></li>
                     </ul>
                 </li>
-                <li><a href="./blog.html">Blog</a></li>
+                <li><a href="./blog.php">Blog</a></li>
                 <li><a href="./contatos.php">Contatos</a></li>
             </ul>
         </nav>
@@ -136,7 +136,7 @@
                                     <li><a href="./carrinho.php">Carrinho</a></li>
                                 </ul>
                             </li>
-                            <li><a href="./blog.html">Blog</a></li>
+                            <li><a href="./blog.php">Blog</a></li>
                             <li><a href="./contatos.php">Contatos</a></li>
                         </ul>
                     </nav>
