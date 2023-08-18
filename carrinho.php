@@ -114,7 +114,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="shoping__cart__btns">
-                        <a href="lista-produtos.php" class="primary-btn cart-btn cart-btn-right bg-success text-light">CONTINUE SHOPPING</a>
+                        <a href="lista-produtos.php" class="primary-btn cart-btn cart-btn-right bg-success text-light">CONTINUE COMPRANDO</a>
                     </div>
                 </div>
                 <div class="col-lg-6">
