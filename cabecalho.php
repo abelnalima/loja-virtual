@@ -51,7 +51,7 @@
             </ul>
             <div class="header__cart__price">item: <span>$150.00</span></div>
             <div class="header__top__right__auth ml-4">
-                <a href="#"><i class="fa fa-user"></i> Login</a>
+                <a href="sistema"><i class="fa fa-user"></i> Login</a>
             </div>
         </div>
         <div class="humberger__menu__widget">
@@ -109,7 +109,7 @@
                                 <a target="_blank" href="http://api.whatsapp.com/send?1=pt_BR&phone=<?php echo $whatsapp_link ?>" title="<?php echo $whatsapp?>"><i class="fa fa-whatsapp text-success"></i></a>
                             </div>
                             <div class="header__top__right__auth">
-                                <a href="#"><i class="fa fa-user"></i> Login</a>
+                                <a href="sistema"><i class="fa fa-user"></i> Login</a>
                             </div>
                         </div>
                     </div>
@@ -130,9 +130,10 @@
                             <li><a href="./categorias.php">Categorias</a></li>
                             <li><a href="#">Produtos</a>
                                 <ul class="header__menu__dropdown">
-                                    <li><a href="./produtos.php">Lista de Produtos</a></li>
-                                    <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                                    <li><a href="./checkout.html">Check Out</a></li>
+                                    <li><a href="./produtos.php">Produtos</a></li>
+                                    <li><a href="./lista-produtos.php">Lista de Produtos</a></li>
+                                    <li><a href="./promocoes.php">Promoções</a></li>
+                                    <li><a href="./combos.php">Combos</a></li>
                                     <li><a href="./carrinho.php">Carrinho</a></li>
                                 </ul>
                             </li>
