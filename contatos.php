@@ -64,10 +64,10 @@
             <form method="post">
                 <div class="row">
                     <div class="col-lg-4 col-md-4">
-                        <input type="text" name="nome" id="nome" placeholder="Seu Nome" required>
+                        <input type="text" name="nome" id="nome" placeholder="Seu Nome">
                     </div>
                     <div class="col-lg-4 col-md-4">
-                        <input type="email" name="email" id="email" placeholder="Seu Email" required>
+                        <input type="email" name="email" id="email" placeholder="Seu Email">
                     </div>
                     <div class="col-lg-4 col-md-4">
                         <input type="text" name="telefone" id="telefone" placeholder="Seu WhatsApp">
@@ -83,5 +83,37 @@
     <!-- Contact Form End -->
 
 <?php 
-    require_once("rodape.php")
+    require_once("rodape.php");
 ?>
+
+<!-- AJAX Begin -->
+<script type="text/javascript">
+    $("#btn-enviar-email").click(function(event){
+        event.preventDefault();
+        alert("Enviando Formulário");
+
+        $.ajax({
+            url: "enviar.php",
+            method: "post",
+            data: $('form').serialize(), //$('form) faz referencia direta ao formulario ao qual o botao pertence
+            dataType: "text",
+            success: function(msg) {
+                if (msg.trim() === 'Enviado com Sucesso!'.trim()) {
+                    alert(msg);
+                    $('#nome').val('');
+                    $('#email').val('');
+                    $('#telefone').val('');
+                    $('#mensagem').val('');
+                } else if (msg.trim() === 'Preencha o campo Nome!'.trim()) {
+                    alert(msg);
+                } else if (msg.trim() === 'Preencha o campo Email!'.trim()) {
+                    alert(msg);
+                } else if (msg.trim() === 'Preencha o campo Mensagem!'.trim()) {
+                    alert(msg);
+                } else {
+                    alert("O Formulário não pode ser enviado! Tente novamente mais tarde!")
+                }
+            }
+        })
+    })
+</script>

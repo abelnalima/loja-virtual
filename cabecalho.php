@@ -3,7 +3,7 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -31,6 +31,8 @@
 
     <script type='text/javascript' src='//code.jquery.com/jquery-compat-git.js'></script>
     <script type='text/javascript' src='//igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js'></script>
+    <script src="js/mascara.js"></script>
+
 </head>
 
 <body>
