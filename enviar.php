@@ -1,5 +1,5 @@
 <?php
-    require_once("config.php");
+    require_once("conexao.php");
 
     if ($_POST['nome'] == "") {
         echo 'Preencha o campo Nome!';
@@ -24,10 +24,19 @@
 
     $cabecalho = "From: ".$_POST['email'];
 
-    @mail($destinatario, $assunto, $mensagem, $cabecalho); //Remover o @ para permitir o erro de conexão
+    mail($destinatario, $assunto, $mensagem, $cabecalho); //Remover o @ para permitir o erro de conexão
 
     echo 'Enviado com Sucesso!';
 
     //ENVIANDO OS VALORES DE NOME E EMAIL PARA O BANCO DE DADOS
-    
+    $res = $pdo->query("SELECT * FROM emails where email = '$_POST[nome]'");
+    $dados = $res->fetchAll(PDO::FETCH_ASSOC);
+
+    if (@count($dados) == 0) {
+        $res = $pdo->prepare("INSERT into emails (nome, email, ativo) values (:nome, :email, :ativo)");
+        $res->bindValue(":nome", $_POST['nome']);
+        $res->bindValue(":email", $_POST['email']);
+        $res->bindValue(":ativo", "Sim");
+        $res->execute();
+    }
 ?>

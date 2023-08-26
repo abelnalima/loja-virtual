@@ -1,5 +1,13 @@
 <?php 
-   require_once("../config.php");
+   require_once("../conexao.php");
+
+   //VERIFICAR SE EXISTE CADASTRO, SE NAO CADASTRAR ADMINISTRADOR
+   $res = $pdo->query("SELECT * FROM usuarios");
+   $dados = $res->fetchAll(PDO::FETCH_ASSOC);
+
+   if (@count($dados) == 0) {
+      $res = $pdo->query("INSERT into usuarios (nome, cpf, email, senha, nivel) values ('Administrador', '000.000.000-00', '$email', '123', 'Admin')");
+   }
 ?>
 
 <!DOCTYPE html>
