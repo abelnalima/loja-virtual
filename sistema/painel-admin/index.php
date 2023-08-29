@@ -1,10 +1,19 @@
 <?php
+    require_once("../../conexao.php");
     @session_start();
 
     //VERIFICANDO SE O USUARIO ESTA AUTENTICADO
     if (@$_SESSION['id_usuario'] == null || @$_SESSION['nivel_usuario'] !== 'Admin') {
         echo "<script language='javascript'>window.location='../index.php'</script>";
     }
+
+    //CONSULTAR O BANCO DE DADOS PARA RECEBER OS DADOS DO USUARIO
+    $res = $pdo->query("SELECT * FROM usuarios where id = '$_SESSION[id_usuario]'");
+    $dados = $res->fetchAll(PDO::FETCH_ASSOC);
+
+    $nome_usuario = @$dados[0]['nome'];
+    $email_usuario = @$dados[0]['email'];
+    $cpf_usuario = @$dados[0]['cpf'];
 
     //variaveis para o menu
     $pag = @$_GET["pag"];
@@ -43,9 +52,12 @@
         <!-- Bootstrap core JavaScript-->
         <script src="../vendor/jquery/jquery.min.js"></script>
         <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+        <script type='text/javascript' src='//code.jquery.com/jquery-compat-git.js'></script>
+        <script type='text/javascript' src='//igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js'></script>
         
-        <link rel="shortcut icon" href="../../img/favicon0.ico" type="image/x-icon">
-        <link rel="icon" href="../../img/favicon0.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="../../img/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../../img/favicon.ico" type="image/x-icon">
     </head>
 
     <body id="page-top">
@@ -150,7 +162,7 @@
                             <!-- Nav Item - User Information -->
                             <li class="nav-item dropdown no-arrow">
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo @$_SESSION['nome_usuario'] ?></span>
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo @$nome_usuario ?></span>
                                     <img class="img-profile rounded-circle" src="../../img/sem-foto.jpg">
                                 </a>
                                 <!-- Dropdown - User Information -->
@@ -211,7 +223,7 @@
 
         <!--  Modal Perfil-->
         <div class="modal fade" id="ModalPerfil" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Editar Perfil</h5>
@@ -222,45 +234,42 @@
 
                     <form id="form-perfil" method="POST" enctype="multipart/form-data">
                         <div class="modal-body">
+                            <div class="form-group">
+                                <label >Nome</label>
+                                <input value="<?php echo @$nome_usuario ?>" type="text" class="form-control" id="nome-perfil" name="nome-perfil" placeholder="Nome">
+                            </div>
+                            <div class="form-group">
+                                <label >CPF</label>
+                                <input value="<?php echo @$cpf_usuario ?>" type="text" class="form-control" id="cpf-perfil" name="cpf-perfil" placeholder="CPF">
+                            </div>
+                            <div class="form-group">
+                                <label >Email</label>
+                                <input value="<?php echo @$email_usuario ?>" type="email" class="form-control" id="email-perfil" name="email-perfil" placeholder="Email">
+                            </div>
                             <div class="row">
-                                <div class="col-md-6 col-sm-12">
-                                    <div class="form-group">
-                                        <label >Nome</label>
-                                        <input value="<?php echo $nome ?>" type="text" class="form-control" id="nome" name="nome" placeholder="Nome">
-                                    </div>
-                                    <div class="form-group">
-                                        <label >CPF</label>
-                                        <input value="<?php echo $cpf ?>" type="text" class="form-control" id="cpf" name="cpf" placeholder="CPF">
-                                    </div>
-                                    <div class="form-group">
-                                        <label >Email</label>
-                                        <input value="<?php echo $email ?>" type="email" class="form-control" id="email" name="email" placeholder="Email">
-                                    </div>
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label >Senha</label>
-                                        <input value="" type="password" class="form-control" id="text" name="senha" placeholder="Senha">
+                                        <input value="" type="password" class="form-control" id="senha-perfil" name="senha-perfil" placeholder="Senha">
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-sm-12">
-                                    <div class="col-md-12 form-group">
-                                        <label>Foto</label>
-                                        <input value="<?php echo $img ?>" type="file" class="form-control-file" id="imagem" name="imagem" onchange="carregarImg();">
-                                    </div>
-                                    <div class="col-md-12 mb-2">
-                                        <img src="../img/profiles/<?php echo $img ?>" alt="Carregue sua Imagem" id="target" width="100%">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label >Confirmar Senha</label>
+                                        <input value="" type="password" class="form-control" id="confirmar-senha-perfil" name="confirmar-senha-perfil" placeholder="Senha">
                                     </div>
                                 </div>
-                            </div> 
+                            </div>
 
                             <small>
                                 <div id="mensagem" class="mr-4"></div>
                             </small>
                         </div>
                         <div class="modal-footer">
-                            <input value="<?php echo $idUsuario ?>" type="hidden" name="txtid" id="txtid">
-                            <input value="<?php echo $cpf ?>" type="hidden" name="antigo" id="antigo">
+                            <input value="<?php echo $_SESSION['id_usuario'] ?>" type="hidden" name="txtid" id="txtid">
+                            <input value="<?php echo $_SESSION['cpf_usuario'] ?>" type="hidden" name="antigo" id="antigo">
 
-                            <button type="button" id="btn-fechar" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="button" id="btn-fechar-perfil" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                             <button type="submit" name="btn-salvar-perfil" id="btn-salvar-perfil" class="btn btn-primary">Salvar</button>
                         </div>
                     </form>
@@ -287,8 +296,36 @@
 
         <!-- Page level custom scripts -->
         <script src="../js/demo/datatables-demo.js"></script>
+
+        <script src="../../js/mascara.js"></script>
     </body>
 </html>
 
+<!-- AJAX Modal Perfil Section Begin -->
+<script type="text/javascript">
+    $("#btn-salvar-perfil").click(function(event) {
+        event.preventDefault();
+        alert("Aguarde um momento...");
 
+        $.ajax({
+            url: "editar-perfil.php",
+            method: "post",
+            data: $('form').serialize(), //$('form) faz referencia direta ao formulario ao qual o botao pertence
+            dataType: "text",
+            success: function(msg) {
+                if (msg.trim() === 'Dados Atualizados com Sucesso!'.trim()) {
+                    alert(msg);
 
+                    $('#btn-fechar-perfil').click();
+                    $('#senha-perfil').val('');
+                    $('#confirmar-senha-perfil').val('');
+
+                    window.location='index.php';
+                } else {
+                    alert(msg)
+                }
+            }
+        })
+    })
+</script>
+<!-- AJAX Modal Perfil Section End -->
