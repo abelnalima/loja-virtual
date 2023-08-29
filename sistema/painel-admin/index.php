@@ -1,21 +1,21 @@
 <?php
     @session_start();
+
     //VERIFICANDO SE O USUARIO ESTA AUTENTICADO
-    if (@$SESSION['id_usuario'] == null || @$_SESSION['nivel_usuario'] != 'Admin') {
+    if (@$_SESSION['id_usuario'] == null || @$_SESSION['nivel_usuario'] !== 'Admin') {
         echo "<script language='javascript'>window.location='../index.php'</script>";
     }
 
     //variaveis para o menu
     $pag = @$_GET["pag"];
-    $menu1 = "corretores";
-    $menu2 = "tesoureiros";
-    $menu3 = "cidade";
-    $menu4 = "bairro";
-    $menu5 = "tipo";
-    $menu6 = "tarefas";
+    $menu1 = "produtos";
+    $menu2 = "categorias";
+    $menu3 = "sub-categorias";
+    $menu4 = "combos";
+    $menu5 = "promocoes";
+    $menu6 = "clientes";
     $menu7 = "vendas";
-    $menu8 = "alugueis";
-
+    $menu8 = "backup";
  ?>
 
 <!DOCTYPE html>
@@ -69,14 +69,14 @@
 
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                        <i class="fas fa-users"></i>
-                        <span>Pessoas</span>
+                        <i class="fas fa-box-open"></i>
+                        <span>Produtos</span>
                     </a>
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <h6 class="collapse-header">PESSOAS:</h6>
-                            <a class="collapse-item" href="index.php?pag=<?php echo $menu1 ?>">Corretores</a>
-                            <a class="collapse-item" href="index.php?pag=<?php echo $menu2 ?>">Tesoureiros</a>
+                            <a class="collapse-item" href="index.php?pag=<?php echo $menu1 ?>">Produtos</a>
+                            <a class="collapse-item" href="index.php?pag=<?php echo $menu2 ?>">Categorias</a>
+                            <a class="collapse-item" href="index.php?pag=<?php echo $menu3 ?>">Sub-Categorias</a>
                         </div>
                     </div>
                 </li>
@@ -84,16 +84,13 @@
                 <!-- Nav Item - Utilities Collapse Menu -->
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-                        <i class="fas fa-home"></i>
-                        <span>Opções Imóveis</span>
+                        <i class="fas fa-percent"></i>
+                        <span>Combos e Promoções</span>
                     </a>
                     <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <h6 class="collapse-header">Dados Imóveis:</h6>
-                            <a class="collapse-item" href="index.php?pag=<?php echo $menu3 ?>">Cidade</a>
-                            <a class="collapse-item" href="index.php?pag=<?php echo $menu4 ?>">Bairro</a>
-                            <a class="collapse-item" href="index.php?pag=<?php echo $menu5 ?>">Tipo</a>
-
+                            <a class="collapse-item" href="index.php?pag=<?php echo $menu4 ?>">Combos</a>
+                            <a class="collapse-item" href="index.php?pag=<?php echo $menu5 ?>">Promoções</a>
                         </div>
                     </div>
                 </li>
@@ -110,20 +107,20 @@
                 <li class="nav-item">
                     <a class="nav-link" href="index.php?pag=<?php echo $menu6 ?>">
                         <i class="fas fa-fw fa-chart-area"></i>
-                        <span>Agenda Corretores</span></a>
+                        <span>Clientes</span></a>
                 </li>
 
                 <!-- Nav Item - Tables -->
                 <li class="nav-item">
                     <a class="nav-link" href="index.php?pag=<?php echo $menu7 ?>">
                         <i class="fas fa-fw fa-table"></i>
-                        <span>Imóveis Vendidos</span></a>
+                        <span>Vendas</span></a>
                 </li>
                 
                 <li class="nav-item">
                     <a class="nav-link" href="index.php?pag=<?php echo $menu8 ?>">
                         <i class="fas fa-fw fa-table"></i>
-                        <span>Imóveis Alugados</span></a>
+                        <span>Backup</span></a>
                 </li>
 
                 <!-- Divider -->
@@ -153,7 +150,7 @@
                             <!-- Nav Item - User Information -->
                             <li class="nav-item dropdown no-arrow">
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">Nome do usuario</span>
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo @$_SESSION['nome_usuario'] ?></span>
                                     <img class="img-profile rounded-circle" src="../../img/sem-foto.jpg">
                                 </a>
                                 <!-- Dropdown - User Information -->
