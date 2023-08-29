@@ -47,10 +47,10 @@
                            <h1>Login</h1>
                         </div>
                      </div>
-                  <form action="" method="post" name="login">
+                  <form action="autenticar.php" method="post" name="login">
                      <div class="form-group">
-                        <label for="exampleInputEmail1">Email ou CPF</label>
-                        <input type="email" id="email-login" name="email-login" class="form-control" aria-describedby="emailHelp" placeholder="Insira o seu email ou CPF">
+                        <label for="exampleInputEmail1">CPF</label>
+                        <input type="text" id="cpf-login" name="cpf-login" class="form-control" aria-describedby="emailHelp" placeholder="Insira o seu email ou CPF">
                      </div>
                      <div class="form-group">
                         <label for="exampleInputEmail1">Senha</label>
