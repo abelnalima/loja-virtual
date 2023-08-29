@@ -174,6 +174,12 @@
                     alert(msg);
                     $("#btn-fechar-cadastrar").click();
                     $("#email-login").val(document.getElementById('email-cadastrar').value);
+                    
+                    $('#nome').val('');
+                    $('#email-cadastrar').val('');
+                    $('#cpf').val('');
+                    $('#senha').val('');
+                    $('#confirmar-senha').val('');
                 } else {
                     alert(msg)
                 }
@@ -183,4 +189,4 @@
 </script>
 <!-- AJAX Section End -->
 
-<!-- Aula 29 -->
+<!-- Aula  -->

@@ -47,9 +47,30 @@
         $res->bindValue(":nivel", 'Cliente');
         
         $res->execute();
+
+        //INSERINDO OS DADOS CADASTRADOS NA TABELA DE CLIENTES
+        $res = $pdo->prepare("INSERT into clientes (nome, cpf, email) values (:nome, :cpf, :email)");
+        $res->bindValue(":nome", $nome);
+        $res->bindValue(":cpf", $cpf);
+        $res->bindValue(":email", $email);
         
+        $res->execute();
+
+        //VERIFICANDO E ADICIONANDO OS DADOS NA TABELA DE EMAILS
+        $res2 = $pdo->query("SELECT * FROM emails where email = '$nome'");
+        $dados2 = $res2->fetchAll(PDO::FETCH_ASSOC);
+
+        if (@count($dados2) == 0) {
+            $res2 = $pdo->prepare("INSERT into emails (nome, email, ativo) values (:nome, :email, :ativo)");
+            $res2->bindValue(":nome", $nome);
+            $res2->bindValue(":email", $email);
+            $res2->bindValue(":ativo", "Sim");
+    
+            $res2->execute();
+        }
+
         echo "Cadastrado com Sucesso!";
     } else {
         echo "CPF já cadastrado!";
-    };
+    };    
 ?>
