@@ -149,7 +149,7 @@
                </div>
                <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                  <button type="button" id="btn-cadastrar" class="btn btn-info">Recuperar</button>
+                  <button type="button" id="btn-recuperar" class="btn btn-info">Recuperar</button>
                </div>
             </form>
          </div>
@@ -158,7 +158,7 @@
 </div>
 <!-- Modal Recuperar Section End -->
 
-<!-- AJAX SectionBegin -->
+<!-- AJAX Modal Cadastrar Section Begin -->
 <script type="text/javascript">
     $("#btn-cadastrar").click(function(event) {
         event.preventDefault();
@@ -187,6 +187,31 @@
         })
     })
 </script>
-<!-- AJAX Section End -->
+<!-- AJAX Modal Cadastrar Section End -->
+
+<!-- AJAX Modal Recuperar Section Begin -->
+<script type="text/javascript">
+    $("#btn-recuperar").click(function(event) {
+        event.preventDefault();
+        alert("Aguarde um momento...");
+
+        $.ajax({
+            url: "recuperar.php",
+            method: "post",
+            data: $('form').serialize(), //$('form) faz referencia direta ao formulario ao qual o botao pertence
+            dataType: "text",
+            success: function(msg) {
+                if (msg.trim() === 'Senha Enviada para o Email Informado!'.trim()) {
+                    alert(msg);
+                    
+                    $('#email-recuperar').val('');
+                } else {
+                    alert(msg)
+                }
+            }
+        })
+    })
+</script>
+<!-- AJAX Modal Recuperar Section End -->
 
 <!-- Aula  -->
