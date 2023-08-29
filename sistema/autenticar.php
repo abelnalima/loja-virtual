@@ -9,6 +9,7 @@
     $dados = $res->fetchAll(PDO::FETCH_ASSOC);
 
     if (@count($dados) > 0) {
+        $_SESSION['id_usuario'] = $dados[0]['id'];
         $_SESSION['nome_usuario'] = $dados[0]['nome'];
         $_SESSION['email_usuario'] = $dados[0]['email'];
         $_SESSION['cpf_usuario'] = $dados[0]['cpf'];
