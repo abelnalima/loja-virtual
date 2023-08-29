@@ -50,11 +50,11 @@
                   <form action="" method="post" name="login">
                      <div class="form-group">
                         <label for="exampleInputEmail1">Email ou CPF</label>
-                        <input type="email" name="email"  class="form-control" id="email" aria-describedby="emailHelp" placeholder="Insira o seu email ou CPF">
+                        <input type="email" id="email-login" name="email-login" class="form-control" aria-describedby="emailHelp" placeholder="Insira o seu email ou CPF">
                      </div>
                      <div class="form-group">
                         <label for="exampleInputEmail1">Senha</label>
-                        <input type="password" name="senha" id="senha"  class="form-control" aria-describedby="emailHelp" placeholder="Insira sua senha">
+                        <input type="password" name="senha-login" id="senha-login"  class="form-control" aria-describedby="emailHelp" placeholder="Insira sua senha">
                      </div>
                      <div class="col-md-12 text-center mt-4">
                         <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">Login</button>
@@ -100,7 +100,7 @@
                </div>
                <div class="form-group">
                   <label for="exampleInputEmail1">Email</label>
-                  <input type="email" class="form-control" id="email" name="email" placeholder="Insira seu email">
+                  <input type="email" class="form-control" id="email-cadastrar" name="email-cadastrar" placeholder="Insira seu email">
                </div>
                <div class="form-group">
                   <label for="exampleInputEmail1">CPF</label>
@@ -121,7 +121,7 @@
                   </div>
                </div>
                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                  <button type="button" id="btn-fechar-cadastrar" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                   <button type="button" id="btn-cadastrar" class="btn btn-info">Cadastrar</button>
                </div>
             </form>
@@ -145,7 +145,7 @@
             <form method="post">
                <div class="form-group">
                   <label for="exampleInputEmail1">Email</label>
-                  <input type="email" class="form-control" id="email" name="email" placeholder="Insira seu email">
+                  <input type="email" class="form-control" id="email-recuperar" name="email-recuperar" placeholder="Insira seu email">
                </div>
                <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
@@ -157,3 +157,30 @@
    </div>
 </div>
 <!-- Modal Recuperar Section End -->
+
+<!-- AJAX SectionBegin -->
+<script type="text/javascript">
+    $("#btn-cadastrar").click(function(event) {
+        event.preventDefault();
+        alert("Enviando Cadastro");
+
+        $.ajax({
+            url: "cadastrar.php",
+            method: "post",
+            data: $('form').serialize(), //$('form) faz referencia direta ao formulario ao qual o botao pertence
+            dataType: "text",
+            success: function(msg) {
+                if (msg.trim() === 'Cadastrado com Sucesso!'.trim()) {
+                    alert(msg);
+                    $("#btn-fechar-cadastrar").click();
+                    $("#email-login").val(document.getElementById('email-cadastrar').value);
+                } else {
+                    alert(msg)
+                }
+            }
+        })
+    })
+</script>
+<!-- AJAX Section End -->
+
+<!-- Aula 29 -->

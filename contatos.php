@@ -86,7 +86,7 @@
     require_once("rodape.php");
 ?>
 
-<!-- AJAX Begin -->
+<!-- AJAX SectionBegin -->
 <script type="text/javascript">
     $("#btn-enviar-email").click(function(event){
         event.preventDefault();
@@ -117,3 +117,4 @@
         })
     })
 </script>
+<!-- AJAX Section End -->
