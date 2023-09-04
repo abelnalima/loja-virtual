@@ -25,7 +25,7 @@
     $menu6 = "clientes";
     $menu7 = "vendas";
     $menu8 = "backup";
- ?>
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -53,9 +53,11 @@
         <script src="../vendor/jquery/jquery.min.js"></script>
         <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-        <script type='text/javascript' src='//code.jquery.com/jquery-compat-git.js'></script>
-        <script type='text/javascript' src='//igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js'></script>
-        
+        <!--
+            <script type='text/javascript' src='//code.jquery.com/jquery-compat-git.js'></script>
+            <script type='text/javascript' src='//igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js'></script>
+        -->
+
         <link rel="shortcut icon" href="../../img/favicon.ico" type="image/x-icon">
         <link rel="icon" href="../../img/favicon.ico" type="image/x-icon">
     </head>
