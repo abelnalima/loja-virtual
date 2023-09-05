@@ -2,7 +2,7 @@
     require_once("../../conexao.php");
     @session_start();
 
-    $pag = "categorias";
+    $pag = "envios";
 
     if (@$_SESSION['id_usuario'] == null || @$_SESSION['nivel_usuario'] != 'Admin') {
         echo "<script language='javascript'>window.location='../index.php'</script>";
@@ -11,7 +11,7 @@
 
 <div class="row mt-4 mb-4">
     <a type="button" class="btn-primary btn-sm ml-3 d-none d-md-block"
-        href="index.php?pag=<?php echo $pag ?>&funcao=novo">Nova Categoria</a>
+        href="index.php?pag=<?php echo $pag ?>&funcao=novo">Novo Envio</a>
     <a type="button" class="btn-primary btn-sm ml-3 d-block d-sm-none"
         href="index.php?pag=<?php echo $pag ?>&funcao=novo">+</a>
 </div>
@@ -24,15 +24,13 @@
                 <thead>
                     <tr>
                         <th>Nome</th>
-                        <th>Itens</th>
-                        <th>Imagem</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
 
                 <tbody>
                     <?php
-                        $query = $pdo->query("SELECT * FROM categorias order by nome asc ");
+                        $query = $pdo->query("SELECT * FROM envios order by tipo asc ");
                         $res = $query->fetchAll(PDO::FETCH_ASSOC);
 
                         for ($i = 0; $i < count($res); $i++) { //Fechamento realizado na linha 64
@@ -40,20 +38,12 @@
 
                             }
 
-                            $nome = $res[$i]['nome'];
-                            $imagem = $res[$i]['imagem'];
+                            $nome = $res[$i]['tipo'];
                             $id = $res[$i]['id'];
-
-                            $query2 = $pdo->query("SELECT * FROM sub_categorias where id_categoria = '$id' ");
-                            $res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
-
-                            $itens = @count($res2);
                     ?>
 
                         <tr>
                             <td><?php echo $nome ?></td>
-                            <td><?php echo $itens ?></td>
-                            <td><img src="../../img/categorias/<?php echo $imagem ?>" width="50"> </td>
                             <td>
                                 <a href="index.php?pag=<?php echo $pag ?>&funcao=editar&id=<?php echo $id ?>"
                                     class='text-primary mr-1' title='Editar Dados'><i class='far fa-edit'></i></a>
@@ -79,11 +69,10 @@
                         $titulo = "Editar Registro";
                         $id2 = $_GET['id'];
 
-                        $query = $pdo->query("SELECT * FROM categorias where id = '" . $id2 . "' ");
+                        $query = $pdo->query("SELECT * FROM envios where id = '" . $id2 . "' ");
                         $res = $query->fetchAll(PDO::FETCH_ASSOC);
 
-                        $nome2 = $res[0]['nome'];
-                        $imagem2 = $res[0]['imagem'];
+                        $nome2 = $res[0]['tipo'];
                     } else {
                         $titulo = "Inserir Registro";
                     }
@@ -99,27 +88,9 @@
             <form id="form" method="POST">
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>Nome</label>
-                        <input value="<?php echo @$nome2 ?>" type="text" class="form-control" id="nome-cat" name="nome-cat" placeholder="Nome">
+                        <label>Tipo de Envio</label>
+                        <input value="<?php echo @$nome2 ?>" type="text" class="form-control" id="tipo-envio" name="tipo-envio" placeholder="Tipo de Envio">
                     </div>
-                    <div class="form-group">
-                        <label>Imagem</label>
-                        <input value="<?php echo @$imagem2 ?>" type="file" class="form-control-file" id="imagem" name="imagem" onChange="carregarImg();">
-                    </div>
-
-                    <?php
-                        if (@$imagem2 != "") { 
-                    ?>
-                            <!-- Dentro do IF -->
-                            <img src="../../img/categorias/<?php echo $imagem2 ?>" width="200" height="200" id="target">
-                    <?php
-                        } else { 
-                    ?> 
-                            <!-- Dentro do ELSE -->
-                            <img src="../../img/categorias/sem-foto.jpg" width="200" height="200" id="target">
-                    <?php 
-                        } 
-                    ?>
                 </div>
 
                 <div class="modal-footer">

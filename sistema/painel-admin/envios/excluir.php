@@ -3,7 +3,7 @@
 
     $id = $_POST['id'];
 
-    $pdo->query("DELETE from sub_categorias WHERE id = '$id'");
+    $pdo->query("DELETE from envios WHERE id = '$id'");
 
     echo "Excluído com Sucesso!";
 ?>

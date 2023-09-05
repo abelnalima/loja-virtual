@@ -25,6 +25,7 @@
     $menu6 = "clientes";
     $menu7 = "vendas";
     $menu8 = "backup";
+    $menu9 = "envios";
 ?>
 
 <!DOCTYPE html>
@@ -91,6 +92,7 @@
                             <a class="collapse-item" href="index.php?pag=<?php echo $menu1 ?>">Produtos</a>
                             <a class="collapse-item" href="index.php?pag=<?php echo $menu2 ?>">Categorias</a>
                             <a class="collapse-item" href="index.php?pag=<?php echo $menu3 ?>">Sub-Categorias</a>
+                            <a class="collapse-item" href="index.php?pag=<?php echo $menu9 ?>">Envios</a>
                         </div>
                     </div>
                 </li>
@@ -205,6 +207,8 @@
                                 include_once($menu7.".php");
                             } else if ($pag==$menu8) {
                                 include_once($menu8.".php");
+                            } else if ($pag==$menu9) {
+                                include_once($menu9.".php");
                             } else {
                                 include_once("home.php");
                             }

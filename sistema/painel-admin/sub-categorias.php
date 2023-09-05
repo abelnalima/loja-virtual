@@ -36,13 +36,12 @@
                         $query = $pdo->query("SELECT * FROM sub_categorias order by nome asc ");
                         $res = $query->fetchAll(PDO::FETCH_ASSOC);
 
-                        for ($i = 0; $i < count($res); $i++) { //Fechamento realizado na linha 55
+                        for ($i = 0; $i < count($res); $i++) { //Fechamento realizado na linha 68
                             foreach ($res[$i] as $key => $value) {
 
                             }
 
                             $nome = $res[$i]['nome'];
-                            $produtos = $res[$i]['itens'];
                             $imagem = $res[$i]['imagem'];
                             $categoria = $res[$i]['id_categoria'];
                             $id = $res[$i]['id'];
@@ -51,11 +50,11 @@
                             $query2 = $pdo->query("SELECT * FROM categorias where id = '$categoria'");
                             $res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
                             $nome_cat = $res2[0]['nome'];
-                            ?>
+                    ?>
 
                         <tr>
                             <td><?php echo $nome ?></td>
-                            <td><?php echo $produtos ?></td>
+                            <td><?php echo "0" ?></td>
                             <td><?php echo $nome_cat ?></td>
                             <td><img src="../../img/sub-categorias/<?php echo $imagem ?>" width="50"> </td>
                             <td>
