@@ -49,12 +49,17 @@
                             //RECUPERAR O NOME DA CATEGORIA
                             $query2 = $pdo->query("SELECT * FROM categorias where id = '$categoria'");
                             $res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
-                            $nome_cat = $res2[0]['nome'];
+                            $nome_cat = @$res2[0]['nome'];
+
+                            //RECUPERAR A QUANTIDADE DE PRODUTOS
+                            $query3 = $pdo->query("SELECT * FROM produtos where id_subcategoria = '$id'");
+                            $res3 = $query3->fetchAll(PDO::FETCH_ASSOC);
+                            $produtos = @count($res3);
                     ?>
 
                         <tr>
                             <td><?php echo $nome ?></td>
-                            <td><?php echo "0" ?></td>
+                            <td><?php echo $produtos ?></td>
                             <td><?php echo $nome_cat ?></td>
                             <td><img src="../../img/sub-categorias/<?php echo $imagem ?>" width="50"> </td>
                             <td>
