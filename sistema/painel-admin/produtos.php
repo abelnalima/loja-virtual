@@ -134,7 +134,7 @@ if (@$_SESSION['id_usuario'] == null || @$_SESSION['nivel_usuario'] != 'Admin') 
                             <div class="form-group">
                                 <label>Nome</label>
                                 <input value="<?php echo @$nome2 ?>" type="text" class="form-control form-control-sm"
-                                    id="nome-subcat" name="nome-subcat" placeholder="Nome">
+                                    id="nome-prod" name="nome-prod" placeholder="Nome">
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -296,16 +296,12 @@ if (@$_SESSION['id_usuario'] == null || @$_SESSION['nivel_usuario'] != 'Admin') 
 
                     <div class="form-group">
                         <label>Descrição Curta <small>(até 500 caracteres)</small> </label>
-                        <textarea maxlength="500" class="form-control form-control-sm" id="descricao_prod" name="descricao_prod">
-                            <?php echo @$descricao ?>
-                        </textarea>
+                        <textarea maxlength="500" class="form-control form-control-sm" id="descricao_prod" name="descricao_prod"><?php echo @$descricaos ?></textarea>
                     </div>
 
                     <div class="form-group">
                         <label>Descrição Longa</label>
-                        <textarea class="form-control form-control-sm" id="descricaoLonga_prod" name="descricaoLonga_prod">
-                            <?php echo @$descricao_longa ?>
-                        </textarea>
+                        <textarea class="form-control form-control-sm" id="descricaoLonga_prod" name="descricaoLonga_prod"><?php echo @$descricao_longa ?></textarea>
                     </div>
 
                     <div class="form-group">
@@ -316,20 +312,19 @@ if (@$_SESSION['id_usuario'] == null || @$_SESSION['nivel_usuario'] != 'Admin') 
 
                     <div class="form-group">
                         <label>Imagem</label>
-                        <input value="<?php echo @$imagem2 ?>" type="file" class="form-control-file" id="imagem"
-                            name="imagem" onChange="carregarImg();">
+                        <input value="<?php echo @$imagem2 ?>" type="file" class="form-control-file" id="imagem" name="imagem" onChange="carregarImg();">
                     </div>
 
                     <?php
                     if (@$imagem2 != "") {
                         ?>
                         <!-- Dentro do IF -->
-                        <img src="../../img/sub-categorias/<?php echo $imagem2 ?>" width="150" height="150" id="target">
+                        <img src="../../img/produtos/<?php echo $imagem2 ?>" width="150" height="150" id="target">
                         <?php
                     } else {
                         ?>
                         <!-- Dentro do ELSE -->
-                        <img src="../../img/sub-categorias/sem-foto.jpg" width="150" height="150" id="target">
+                        <img src="../../img/produtos/sem-foto.jpg" width="150" height="150" id="target">
                     <?php
                     }
                     ?>
